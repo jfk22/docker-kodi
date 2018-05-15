@@ -36,7 +36,5 @@ RUN packages="kodi kodi-eventclients-xbmc-send ca-certificates" && \
     rm -rf /var/lib/apt/lists/*
 
 # setup entry point
-ADD entrypoint.sh /usr/local/bin
-RUN chmod +x /usr/local/bin/entrypoint.sh
-
+COPY entrypoint.sh /usr/local/bin
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
