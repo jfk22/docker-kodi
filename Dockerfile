@@ -40,33 +40,8 @@ COPY entrypoint.sh /usr/local/bin
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 # install optional packages. do this last so we can cache the above layers between branches
-RUN packages="                                              \
-    kodi-pvr-argustv                                        \
-    kodi-pvr-dvblink                                        \
-    kodi-pvr-dvbviewer                                      \
-    kodi-pvr-hdhomerun                                      \
-    kodi-pvr-hts                                            \
-    kodi-pvr-iptvsimple                                     \
-    kodi-pvr-mythtv                                         \
-    kodi-pvr-nextpvr                                        \
-    kodi-pvr-njoy                                           \
-    kodi-pvr-octonet                                        \
-    kodi-pvr-pctv                                           \
-    kodi-pvr-vbox                                           \
-    kodi-pvr-vdr-vnsi                                       \
-    kodi-pvr-vuplus=*~bionic                                \
-    pulseaudio"                                          && \
+RUN packages="pulseaudio"                                && \
     apt-get update                                       && \
     apt-get install -y --no-install-recommends $packages && \
     apt-get -y --purge autoremove                        && \
     rm -rf /var/lib/apt/lists/*
-
-# notes on the PVR packages:
-#
-# kodi-pvr-vuplus needs its version set to prevent the Debian package from taking priority
-# kodi-pvr-mediaportal-tvserver can in installed once this issue [1] is fixed.
-# kodi-pvr-wmc can be installed once this PR [2] makes its way into the Team XBMC PPA. See this issue [3] for details.
-#
-# [1] https://github.com/kodi-pvr/pvr.mediaportal.tvserver/issues/86
-# [2] https://github.com/kodi-pvr/pvr.wmc/pull/61
-# [3] https://github.com/kodi-pvr/pvr.wmc/issues/60
