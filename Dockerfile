@@ -54,8 +54,7 @@ RUN packages="                                              \
     kodi-pvr-pctv                                           \
     kodi-pvr-vbox                                           \
     kodi-pvr-vdr-vnsi                                       \
-    kodi-pvr-vuplus=*~bionic                                \
-    pulseaudio"                                          && \
+    kodi-pvr-vuplus=*~bionic"                            && \
     apt-get update                                       && \
     apt-get install -y --no-install-recommends $packages && \
     apt-get -y --purge autoremove                        && \
