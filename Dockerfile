@@ -18,21 +18,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 
 # install the team-xbmc ppa
 RUN apt-get update                                                        && \
     apt-get install -y --no-install-recommends software-properties-common && \
     add-apt-repository ppa:team-xbmc/ppa                                  && \
-    apt-get -y purge software-properties-common                           && \
+    apt-get -y purge ca-certificates openssl software-properties-common   && \
     apt-get -y --purge autoremove                                         && \
     rm -rf /var/lib/apt/lists/*
 
-# install packages
-RUN packages="kodi kodi-eventclients-xbmc-send ca-certificates" && \
-    apt-get update                                              && \
-    apt-get install -y --no-install-recommends $packages        && \
-    apt-get -y --purge autoremove                               && \
+# install base packages
+RUN packages="kodi kodi-eventclients-xbmc-send"          && \
+    apt-get update                                       && \
+    apt-get install -y --no-install-recommends $packages && \
+    apt-get -y --purge autoremove                        && \
     rm -rf /var/lib/apt/lists/*
 
 # setup entry point
