@@ -32,7 +32,7 @@ RUN apt-get update                                                        && \
 # kodi-eventclients-xbmc-send allows us to shut down Kodi gracefully upon container termination
 # tzdata is necessary for timezone functionality (see https://github.com/mviereck/x11docker/issues/50)
 # libnss3 is necessary for Widevine to work
-RUN packages="kodi kodi-eventclients-xbmc-send tzdata libnss3"   && \
+RUN packages="kodi kodi-eventclients-xbmc-send tzdata"   && \
     apt-get update                                       && \
     apt-get install -y --no-install-recommends $packages && \
     apt-get -y --purge autoremove                        && \
